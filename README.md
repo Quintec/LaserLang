@@ -9,7 +9,7 @@ Download/clone the repository, then compile the interpreter file:
 
 To execute a program, save it in a file with a `.lsr` extension and then run
 
-`java Laser [filename] [arguments]`
+`java Laser [filename] [space separated arguments]`
 
 # Example program
 [Hello World](helloworld.lsr)
