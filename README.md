@@ -24,9 +24,14 @@ Laser will push any one digit integer it encounters onto the current stack. To i
 
 ## Examples
 
-```
-
-```
+| Code | Stack (top first) |
+| ---- | ----------------- |
+| `123` | `[3, 2, 1]` |
+| ``` `123` ``` | `[123]` |
+| `"foo"` | `["foo"]` |
+| `"fo""o"` | `["o", "fo"]` |
+| <pre>"fo\\<br>&nbsp;&nbsp;&nbsp;o<br>&nbsp;&nbsp;&nbsp;"</pre> | `["foo"]` |
+| ``` `i can slash//\` ``` | `["i can slash/\"]` |
 
 # Mirrors
 
@@ -39,6 +44,8 @@ Control flow is managed with a series of **mirrors** to change the direction of 
 | `\` | up -> left, left -> up, down -> right, right -> down |
 | `/` | up -> right, left -> down, down -> left, right -> up |
 
+A good example of the use of mirrors can be found in the [Hello World program](helloworld.lsr). (As an exercise to get comfortable with the mirrors, try tracing the program!)
+
 ## Double-sided mirrors
 
 Laser also has unique **double-sided mirrors** - think of these as two mirrors in one character with a small gap separating them. Double-sided mirrors will force the instruction pointer into a row/column.
@@ -50,12 +57,22 @@ Laser also has unique **double-sided mirrors** - think of these as two mirrors i
 | `<` | up -> left, left -> left, down -> left, right -> right |
 | `^` | up -> up, left -> up, down -> down, right -> up |
 
-A good example of the use of mirrors can be found in the [Hello World program](helloworld.lsr). (As an exercise to get comfortable with the mirrors, try tracing the program!)
-
 # Branching
 
 The equivalent of `if` statements in Laser is *branching*. **Branches** are essentially forks in the road with two directions. Whenever the instruction pointer encounters a branch, it will only switch direction if the *current memory cell* is 0. Otherwise, it will keep going in the original direction.
 
 | Branch | Direction change (if applied) |
 | ------ | ----------------------------- |
-| `⌞` | 
+| `⌞` | up -> right, left -> up, down -> right, right -> up|
+| `⌜` | up -> right, left -> down, down -> right, right -> down |
+| `⌟` | up -> left, left -> up, down -> left, right -> up |
+| `⌝` | up -> left, left -> down, down -> left, right -> down |
+
+# Operations
+
+## Unary Operations
+
+## Binary Operations
+
+
+
