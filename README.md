@@ -31,7 +31,7 @@ Laser will push any one digit integer it encounters onto the current stack. To i
 | `"foo"` | `["foo"]` |
 | `"fo""o"` | `["o", "fo"]` |
 | <pre>"fo\\<br>&nbsp;&nbsp;&nbsp;o<br>&nbsp;&nbsp;&nbsp;"</pre> | `["foo"]` |
-| ``` `i can slash//\` ``` | `["i can slash/\"]` |
+| ``` `i can slash/\ yay` ``` | `["i can slash/\ yay"]` |
 
 # Mirrors
 
