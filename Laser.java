@@ -248,7 +248,7 @@ public class Laser {
             while (memory.get(addr).size() > 1) {
                 binOp(op);
             }
-        } else if (op == '-' || (UNARY_OPS.contains(op) && !unusable.contains(op))) {
+        } else if (op == '-' || op == 'o' || (UNARY_OPS.contains(op) && !unusable.contains(op))) {
             for (int i = 0; i < memory.get(addr).size(); i++) {
                 switch (op) {
                     case '(':
