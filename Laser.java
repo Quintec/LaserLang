@@ -12,7 +12,7 @@ public class Laser {
     public static final int RAW_MODE = 13;
     
     public static final Set<Character> MIRRORS = new HashSet<Character>(Arrays.asList('\\', '/', '>', '<', '^', 'v')); 
-    public static final Set<Character> BIN_OPS = new HashSet<Character>(Arrays.asList('+', '-', '×', '÷', '*', '&', '|'));
+    public static final Set<Character> BIN_OPS = new HashSet<Character>(Arrays.asList('+', '-', '×', '÷', '*', '&', '|', '%'));
     public static final Set<Character> UNARY_OPS = new HashSet<Character>(Arrays.asList('(', ')', 'r', 'R', '!','~'));
     public static final Set<Character> BRANCHES = new HashSet<Character>(Arrays.asList('⌞', '⌜', '⌟', '⌝'));
     
@@ -266,6 +266,10 @@ public class Laser {
                     case '-':
                         memory.get(addr).set(i, 0 - (Long)(memory.get(addr).get(i)));
                         break;
+                    case 'o':
+                        while (memory.get(addr).size() > 0)
+                            System.out.println(memory.get(addr).pop());
+                        break;
                 }
             }
         }
@@ -389,6 +393,13 @@ public class Laser {
                 lb = (Long)b;
                 memory.get(addr).push(la | lb);
                 break;
+            case '%':
+                a = memory.get(addr).pop();
+                b = memory.get(addr).pop();
+                la = (Long)a;
+                lb = (Long)b;
+                memory.get(addr).push(lb % la);
+                break;
         }
     }
     
@@ -421,7 +432,7 @@ public class Laser {
         }
     }
 
-        private void branch(char curr) {
+    private void branch(char curr) {
         long val = (long)memory.get(addr).peek();
         switch (curr) {
             case '⌞':

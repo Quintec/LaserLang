@@ -24,7 +24,9 @@ Laser will push any one digit integer it encounters onto the current stack. To i
 
 ## Examples
 
-| Code | Stack (top first) |
+In these examples and all examples following, the top of the stack is the beginning of the "array".
+
+| Code | Stack |
 | ---- | ----------------- |
 | `123` | `[3, 2, 1]` |
 | ``` `123` ``` | `[123]` |
@@ -70,9 +72,25 @@ The equivalent of `if` statements in Laser is *branching*. **Branches** are esse
 
 # Operations
 
+Unary operations operate on the element on top of the stack, while binary operations operate on the top two elements of the stack. Stack operations modify the whole stack in some way not related to only one element, or move between stacks.
+
 ## Unary Operations
 
+| Op | Description | Stack (before) | Stack (after) | Notes |
+| -- | ----------- | -------------- | ------------- | ----- |
+| `(` | Decrement | `[a, b, c]` | `[(a - 1), b, c]` | Also works on strings via ascii codes. |
+| `)` | Increment | `[a, b, c]` | `[(a + 1), b, c]` | Also works on strings via ascii codes. |
+| `r` | Replicate | `[a, b, c]` | `[a, a, b, c]` | |
+| `R` | Stack Replicate | `[[a, b, c]]` | `[[a, b, c], [a, b, c]]` | |
+| `!` | Not (bit flip) | `[1, 0]` | `[0, 0]` | |
+| `~` | Bitwise not | `[1, 0]` | `[-2, 0]` | |
+| `p` | Pop | `[a, b, c]` | `[b, c]` | |
+| `P` | Stack Pop | `[[a, b, c], [a, b, c]]` | `[[a, b, c]]` | |
+| `o` | Output | `[a, b, c]` | `[b, c]` | Pops and outputs the top element of the stack to `stdout`. |
+
 ## Binary Operations
+
+## Stack Operations
 
 
 
