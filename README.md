@@ -90,7 +90,30 @@ Unary operations operate on the element on top of the stack, while binary operat
 
 ## Binary Operations
 
+| Op | Description | Stack (before) | Stack (after) | Notes |
+| -- | ----------- | -------------- | ------------- | ----- |
+| `+` | Add | `[a, b, c]` | `[a + b, c]` | Also concatenates strings. |
+| `-` | Subtract | `[a, b, c]` | `[b - a, c]` | |
+| `×` | Multiply | `[a, b, c]` | `[a × b, c]`| |
+| `÷` | Divide | `[a, b, c]` | `[b ÷ a, c]` | Does integer division only. (floors result) |
+| `*` | Exponentiate | `[a, b, c]` | `[b ^ a, c]` | |
+| `&` | Bitwise And | `[1, 0]` | `[0]` | |
+| `|` | Bitwise Or | `[1, 0]` | `[1]` | |
+| `%` | Modulo | `[a, b, c]` | `[b % a, c]` | |
+
 ## Stack Operations
 
+| Op | Description | Stack (before) | Stack (after) | Notes |
+| -- | ----------- | -------------- | ------------- | ----- |
+| `U` | Stack Up | | | Moves up a stack in the list of stacks. If the stack above doesn't exist, automatically creates one. |
+| `D` | Stack Down | | | Moves down a stack in the list of stacks. |
+| `u` | Rotate Up | `[a, b, c]` | `[c, a, b]` | |
+| `d` | Rotate Down | `[a, b, c]` | `[b, c, a]` | |
+| `s` | Swap Up | (Pointing to `[a, b, c]`) `[[d, e, f], [a, b, c]]` | (Pointing to `[a, b, c]`) `[[a, d, e, f], [b, c]]` | If the stack above doesn't exist, automatically creates one. |
+| `w` | Swap Down | (Pointing to `[d, e, f]`) `[[d, e, f], [a, b, c]]` | (Pointing to `[d, e, f]`) `[[e, f], [d, a, b, c]]` | If the stack above doesn't exist, automatically creates one. |
+| `i` | Input | `[]` | `[(first input)]` | Pops one argument from the input stack and pushes it onto the current stack. |
+| `I` | Input Stack | `[]` | `[input1, input2, input3, ...]` | Pops all arguments from the input stack onto the current stack. |
+| `#` | Terminate | | | Terminates execution of program. The current stack is outputted as well. |
 
+Note: if no `i` or `I` commands are in the program, Laser will automatically implicitly push the entire input stack onto the first stack at the beginning of the program. 
 

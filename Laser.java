@@ -49,6 +49,8 @@ public class Laser {
         int rows = 0;
         boolean vb = false;
 
+        boolean implicit = true;
+
         LinkedList<Object> input = new LinkedList<Object>();
         for (int i = 1; i < args.length; i++) {
             if (args[i].equals("-v") || args[i].equals("-verbose")) {
@@ -65,6 +67,8 @@ public class Laser {
         while ((line = in.readLine()) != null) {
             rows++;
             maxLen = Math.max(maxLen, line.length());
+            if (line.contains("i") || line.contains("I"))
+                implicit = false;
             lines.add(line);
         }
         
@@ -75,10 +79,10 @@ public class Laser {
                 prog[i][j] = cs[j];
             }
         }
-        new Laser(prog, rows, maxLen, input, vb).run();
+        new Laser(prog, rows, maxLen, input, vb, implicit).run();
     }
     
-    public Laser(char[][] p, int r, int c, LinkedList<Object> inp, boolean v) {
+    public Laser(char[][] p, int r, int c, LinkedList<Object> inp, boolean v, boolean imp) {
         this.program = p;
         this.rows = r;
         this.cols = c;
@@ -98,6 +102,12 @@ public class Laser {
         
         this.str = "";
         this.num = "";
+
+        if (imp) {
+            while (!input.isEmpty()) {
+                memory.get(addr).push(input.pop());
+            }
+        }
     }
 
     private long fastPow(long base, long power) {
@@ -207,6 +217,9 @@ public class Laser {
                         memory.get(addr).push(input.pop());
                     }
                 } else if (curr == '#') {
+                    while (!memory.get(addr).isEmpty()) {
+                        System.out.println(memory.get(addr).pop());
+                    }
                     return false;
                 } 
                 break;
