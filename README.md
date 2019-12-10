@@ -12,7 +12,6 @@ To execute a program, save it in a file with a `.lsr` extension and then run
 `java Laser [filename] [space separated arguments]`
 
 # Documentation
-(WIP)
 
 Laser is a 2-D language designed to be relatively simple to read code in, even if you have never seen the language before. 
 
