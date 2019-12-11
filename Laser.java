@@ -172,7 +172,12 @@ public class Laser {
                 } else if (curr == 'o') {
                     System.out.println(memory.get(addr).pop());
                 } else if (curr == 'O') {
-                    //separator for printing out a stack?
+                    String output = "";
+                    while (!memory.get(addr).isEmpty()) {
+                        output += memory.get(addr).pop() + " ";
+                    }
+                    output = output.substring(0, output.length() - 1);
+                    System.out.println(output);
                 } else if (curr == 'U') {
                     addr++;
                     if (addr >= memory.size())
@@ -217,9 +222,12 @@ public class Laser {
                         memory.get(addr).push(input.pop());
                     }
                 } else if (curr == '#') {
+                    String output = "";
                     while (!memory.get(addr).isEmpty()) {
-                        System.out.println(memory.get(addr).pop());
+                        output += memory.get(addr).pop() + " ";
                     }
+                    output = output.substring(0, output.length() - 1);
+                    System.out.println(output);
                     return false;
                 } 
                 break;

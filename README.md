@@ -85,7 +85,8 @@ Unary operations operate on the element on top of the stack, while binary operat
 | `~` | Bitwise not | `[1, 0]` | `[-2, 0]` | |
 | `p` | Pop | `[a, b, c]` | `[b, c]` | |
 | `P` | Stack Pop | `[[a, b, c], [a, b, c]]` | `[[a, b, c]]` | |
-| `o` | Output | `[a, b, c]` | `[b, c]` | Pops and outputs the top element of the stack to `stdout`. |
+| `o` | Output | `[a, b, c]` | `[b, c]` | Pops and outputs the top element of the stack. |
+| `O` | Stack Output | `[a, b, c]` | `[]` | Pops and outputs the whole stack, space separated. |
 
 ## Binary Operations
 
@@ -112,7 +113,7 @@ Unary operations operate on the element on top of the stack, while binary operat
 | `w` | Swap Down | (Pointing to `[d, e, f]`) `[[d, e, f], [a, b, c]]` | (Pointing to `[d, e, f]`) `[[e, f], [d, a, b, c]]` | If the stack above doesn't exist, automatically creates one. |
 | `i` | Input | `[]` | `[(first input)]` | Pops one argument from the input stack and pushes it onto the current stack. |
 | `I` | Input Stack | `[]` | `[input1, input2, input3, ...]` | Pops all arguments from the input stack onto the current stack. |
-| `#` | Terminate | | | Terminates execution of program. The current stack is outputted as well. |
+| `#` | Terminate | | | Terminates execution of program. The current stack is outputted (space-separated) as well. |
 
 Note: if no `i` or `I` commands are in the program, Laser will automatically implicitly push the entire input stack onto the first stack at the beginning of the program. 
 
