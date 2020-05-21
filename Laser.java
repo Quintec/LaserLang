@@ -12,9 +12,12 @@ public class Laser {
     public static final int RAW_MODE = 13;
     
     public static final Set<Character> MIRRORS = new HashSet<Character>(Arrays.asList('\\', '/', '>', '<', '^', 'v')); 
-    public static final Set<Character> BIN_OPS = new HashSet<Character>(Arrays.asList('+', '-', '×', '÷', '*', '&', '|', '%'));
+    public static final Set<Character> BIN_OPS = new HashSet<Character>(Arrays.asList('+', '-', '×', '÷', '*', '&', '|', '%', 'g', 'l', '='));
     public static final Set<Character> UNARY_OPS = new HashSet<Character>(Arrays.asList('(', ')', 'r', 'R', '!','~'));
     public static final Set<Character> BRANCHES = new HashSet<Character>(Arrays.asList('⌞', '⌜', '⌟', '⌝'));
+
+    public static final Long TRUE = Long.valueOf(1);
+    public static final Long FALSE = Long.valueOf(0);
     
     private final int rows;
     private final int cols;
@@ -139,7 +142,7 @@ public class Laser {
     private boolean step() {
         char curr = program[pRow][pCol];
         if (verbose)
-            System.out.println("curr: " +curr + "\t" + "addr: " + addr);
+            System.out.println("curr: " +curr + "\t" + "addr: " + addr + "\t" + "stack: " + memory.get(addr));
         switch (mode) {
             case INSTRUCTION_MODE:
                 if (MIRRORS.contains(curr)) {
@@ -399,6 +402,60 @@ public class Laser {
                 la = (Long)a;
                 lb = (Long)b;
                 memory.get(addr).push(fastPow(lb, la));
+                break;
+            case 'g':
+            	a = memory.get(addr).pop();
+                b = memory.get(addr).pop();
+                if (a instanceof String || b instanceof String) {
+                	int comp = b.toString().compareTo(a.toString());
+                	if (comp > 0)
+                		memory.get(addr).push(TRUE);
+                	else
+                		memory.get(addr).push(FALSE);
+                } else {
+                	la = (Long)a;
+                	lb = (Long)b;
+                	if (lb > la)
+                		memory.get(addr).push(TRUE);
+                	else
+                		memory.get(addr).push(FALSE);
+                }
+                break;
+            case 'l':
+            	a = memory.get(addr).pop();
+                b = memory.get(addr).pop();
+                if (a instanceof String || b instanceof String) {
+                	int comp = b.toString().compareTo(a.toString());
+                	if (comp > 0)
+                		memory.get(addr).push(FALSE);
+                	else
+                		memory.get(addr).push(TRUE);
+                } else {
+                	la = (Long)a;
+                	lb = (Long)b;
+                	if (lb > la)
+                		memory.get(addr).push(FALSE);
+                	else
+                		memory.get(addr).push(TRUE);
+                }
+                break;
+            case '=':
+            	a = memory.get(addr).pop();
+                b = memory.get(addr).pop();
+                if (a instanceof String || b instanceof String) {
+                	int comp = b.toString().compareTo(a.toString());
+                	if (comp == 0)
+                		memory.get(addr).push(TRUE);
+                	else
+                		memory.get(addr).push(FALSE);
+                } else {
+                	la = (Long)a;
+                	lb = (Long)b;
+                	if (lb == la)
+                		memory.get(addr).push(TRUE);
+                	else
+                		memory.get(addr).push(FALSE);
+                }
                 break;
             case '&':
                 a = memory.get(addr).pop();

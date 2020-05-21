@@ -97,6 +97,9 @@ Unary operations operate on the element on top of the stack, while binary operat
 | `×` | Multiply | `[a, b, c]` | `[a × b, c]`| |
 | `÷` | Divide | `[a, b, c]` | `[b ÷ a, c]` | Does integer division only. (floors result) |
 | `*` | Exponentiate | `[a, b, c]` | `[b ^ a, c]` | |
+| `g` | Greater Than | `[1, 3, 5]` | `[1, 5]` | Can compare strings also. |
+| `l` | Less Than | `[1, 3, 5]` | `[0, 5]` | Can compare strings also. |
+| `=` | Equals | `[3, 3, 5]` | `[1, 5]` | Can compare strings also. |
 | `&` | Bitwise And | `[1, 0]` | `[0]` | |
 | `|` | Bitwise Or | `[1, 0]` | `[1]` | |
 | `%` | Modulo | `[a, b, c]` | `[b % a, c]` | |
