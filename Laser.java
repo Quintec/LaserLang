@@ -13,7 +13,7 @@ public class Laser {
     
     public static final Set<Character> MIRRORS = new HashSet<Character>(Arrays.asList('\\', '/', '>', '<', '^', 'v')); 
     public static final Set<Character> BIN_OPS = new HashSet<Character>(Arrays.asList('+', '-', '×', '÷', '*', '&', '|', '%', 'g', 'l', '='));
-    public static final Set<Character> UNARY_OPS = new HashSet<Character>(Arrays.asList('(', ')', 'r', 'R', '!','~'));
+    public static final Set<Character> UNARY_OPS = new HashSet<Character>(Arrays.asList('(', ')', 'r', 'R', '!','~', 'c'));
     public static final Set<Character> BRANCHES = new HashSet<Character>(Arrays.asList('⌞', '⌜', '⌟', '⌝'));
 
     public static final Long TRUE = Long.valueOf(1);
@@ -353,6 +353,10 @@ public class Laser {
                 la = (Long)a;
                 memory.get(addr).push(~la);
                 break;
+            case 'c':
+            	LinkedList<Object> temp = memory.get(addr);
+            	temp.push(temp.size());
+            	break;
         }
     }
 

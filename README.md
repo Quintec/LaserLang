@@ -79,6 +79,7 @@ Unary operations operate on the element on top of the stack, while binary operat
 | -- | ----------- | -------------- | ------------- | ----- |
 | `(` | Decrement | `[a, b, c]` | `[(a - 1), b, c]` | Also works on strings via ascii codes. |
 | `)` | Increment | `[a, b, c]` | `[(a + 1), b, c]` | Also works on strings via ascii codes. |
+| `c` | Cardinality | `[a, b, c]` | `[3, a, b, c]` | Also known as length, size, etc. (of the current stack) |
 | `r` | Replicate | `[a, b, c]` | `[a, a, b, c]` | |
 | `R` | Stack Replicate | `[[a, b, c]]` | `[[a, b, c], [a, b, c]]` | |
 | `!` | Not (bit flip) | `[1, 0]` | `[0, 0]` | |
@@ -112,8 +113,8 @@ Unary operations operate on the element on top of the stack, while binary operat
 | `D` | Stack Down | | | Moves down a stack in the list of stacks. |
 | `u` | Rotate Up | `[a, b, c]` | `[c, a, b]` | |
 | `d` | Rotate Down | `[a, b, c]` | `[b, c, a]` | |
-| `s` | Swap Up | (Pointing to `[a, b, c]`) `[[d, e, f], [a, b, c]]` | (Pointing to `[a, b, c]`) `[[a, d, e, f], [b, c]]` | If the stack above doesn't exist, automatically creates one. |
-| `w` | Swap Down | (Pointing to `[d, e, f]`) `[[d, e, f], [a, b, c]]` | (Pointing to `[d, e, f]`) `[[e, f], [d, a, b, c]]` | If the stack above doesn't exist, automatically creates one. |
+| `s` | Swap Up | (Pointing to `[a, b, c]`) <br> `[[a, b, c], [d, e, f]]` | (Pointing to `[b, c]`) <br> `[[b, c], [a, d, e, f]]` | If the stack above doesn't exist, automatically creates one. |
+| `w` | Swap Down | (Pointing to `[d, e, f]`) <br> `[[a, b, c], [d, e, f]]` | (Pointing to `[e, f]`) <br> `[[d, a, b, c], [e, f]]` | |
 | `i` | Input | `[]` | `[(first input)]` | Pops one argument from the input stack and pushes it onto the current stack. |
 | `I` | Input Stack | `[]` | `[input1, input2, input3, ...]` | Pops all arguments from the input stack onto the current stack. |
 | `#` | Terminate | | | Terminates execution of program. The current stack is outputted (space-separated) as well. |
