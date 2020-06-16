@@ -121,5 +121,8 @@ Unary operations operate on the element on top of the stack, while binary operat
 
 Note: if no `i` or `I` commands are in the program, Laser will automatically implicitly push the entire input stack onto the first stack at the beginning of the program. 
 
-There's also a special Laser command, but you can figure out yourself what that does.
+## Laser Command
 
+Documentation
+Does not exist for this yet
+This is a haiku
