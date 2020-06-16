@@ -123,6 +123,6 @@ Note: if no `i` or `I` commands are in the program, Laser will automatically imp
 
 ## Laser Command
 
-Documentation
-Does not exist for this yet
+Documentation <br>
+Does not exist for this yet<br>
 This is a haiku
