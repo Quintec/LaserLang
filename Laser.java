@@ -38,8 +38,12 @@ public class Laser {
     private String num;
     
     private int mode;
-    
+
     public static void main(String[] args) throws IOException {
+        run(args);
+    }
+    
+    public static void run(String[] args) throws IOException {
         if (args[0].indexOf(".lsr") == -1) {
             System.err.println("FileError: Laser program files must end in .lsr");
             System.exit(1);
@@ -175,12 +179,14 @@ public class Laser {
                 } else if (curr == 'o') {
                     System.out.println(memory.get(addr).pop());
                 } else if (curr == 'O') {
-                    String output = "";
-                    while (!memory.get(addr).isEmpty()) {
-                        output += memory.get(addr).pop() + " ";
+                    if (!memory.get(addr).isEmpty()) {
+                        String output = "";
+                        while (!memory.get(addr).isEmpty()) {
+                            output += memory.get(addr).pop() + " ";
+                        }
+                        output = output.substring(0, output.length() - 1);
+                        System.out.println(output);
                     }
-                    output = output.substring(0, output.length() - 1);
-                    System.out.println(output);
                 } else if (curr == 'U') {
                     addr++;
                     if (addr >= memory.size())
@@ -225,6 +231,8 @@ public class Laser {
                         memory.get(addr).push(input.pop());
                     }
                 } else if (curr == '#') {
+                    if (memory.get(addr).isEmpty())
+                        return false;
                     String output = "";
                     while (!memory.get(addr).isEmpty()) {
                         output += memory.get(addr).pop() + " ";
@@ -355,7 +363,7 @@ public class Laser {
                 break;
             case 'c':
             	LinkedList<Object> temp = memory.get(addr);
-            	temp.push(temp.size());
+            	temp.push(Long.valueOf(temp.size()));
             	break;
         }
     }
