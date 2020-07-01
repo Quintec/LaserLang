@@ -131,6 +131,8 @@ public class Laser {
     }
 
     private long flipBits(long n) {
+        if (n == 0)
+            return 1;
         long k = (long)(Math.floor(Math.log(n)/Math.log(2))+1);
         long mask = (1 << k) - 1;
         return n ^ mask;
