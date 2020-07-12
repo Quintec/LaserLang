@@ -48,7 +48,7 @@ public class Laser {
             System.err.println("FileError: Laser program files must end in .lsr");
             System.exit(1);
         }
-        BufferedReader in = new BufferedReader(new FileReader(args[0]));
+        BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(args[0]), "UTF-8"));
         ArrayList<String> lines = new ArrayList<String>();
         
         String line = null;
