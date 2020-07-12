@@ -34,6 +34,8 @@ In these examples and all examples following, the top of the stack is the beginn
 | <pre>"fo\\<br>&nbsp;&nbsp;&nbsp;o<br>&nbsp;&nbsp;&nbsp;"</pre> | `["foo"]` |
 | ``` `i can slash/\ yay` ``` | `["i can slash/\ yay"]` |
 
+> checkout the examples folder for more examples
+
 # Mirrors
 
 Control flow is managed with a series of **mirrors** to change the direction of the instruction pointer. The mirrors work as you would expect them to - imagine a bouncy ball/actual laser hitting them and where it would go next.
@@ -45,7 +47,7 @@ Control flow is managed with a series of **mirrors** to change the direction of 
 | `\` | up -> left, left -> up, down -> right, right -> down |
 | `/` | up -> right, left -> down, down -> left, right -> up |
 
-A good example of the use of mirrors can be found in the [Hello World program](helloworld.lsr). (As an exercise to get comfortable with the mirrors, try tracing the program!)
+A good example of the use of mirrors can be found in the [Hello World program](examples/helloworld.lsr). (As an exercise to get comfortable with the mirrors, try tracing the program!)
 
 ## Double-sided mirrors
 
