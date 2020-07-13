@@ -28,7 +28,7 @@ In these examples and all examples following, the top of the stack is the beginn
 | Code | Stack |
 | ---- | ----------------- |
 | `123` | `[3, 2, 1]` |
-| ``` `123` ``` | `[123]` |
+| ``` '123' ``` | `[123]` |
 | `"foo"` | `["foo"]` |
 | `"fo""o"` | `["o", "fo"]` |
 | <pre>"fo\\<br>&nbsp;&nbsp;&nbsp;o<br>&nbsp;&nbsp;&nbsp;"</pre> | `["foo"]` |
