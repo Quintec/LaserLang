@@ -13,7 +13,7 @@ public class Laser {
     
     public static final Set<Character> MIRRORS = new HashSet<Character>(Arrays.asList('\\', '/', '>', '<', '^', 'v')); 
     public static final Set<Character> BIN_OPS = new HashSet<Character>(Arrays.asList('+', '-', '×', '÷', '*', '&', '|', '%', 'g', 'l', '='));
-    public static final Set<Character> UNARY_OPS = new HashSet<Character>(Arrays.asList('(', ')', 'r', 'R', '!','~', 'c'));
+    public static final Set<Character> UNARY_OPS = new HashSet<Character>(Arrays.asList('(', ')', 'r', 'R', '!','~', 'c', 'b', 'n', 'B'));
     public static final Set<Character> BRANCHES = new HashSet<Character>(Arrays.asList('⌞', '⌜', '⌟', '⌝'));
 
     public static final Long TRUE = Long.valueOf(1);
@@ -367,7 +367,34 @@ public class Laser {
             	LinkedList<Object> temp = memory.get(addr);
             	temp.push(Long.valueOf(temp.size()));
             	break;
-        }
+            case 'b':
+                a = memory.get(addr).pop();
+                if (!(a instanceof Long)) {
+                    System.err.println("TypeError: tried to cast non-number to string");
+                    System.exit(1);
+                }
+                memory.get(addr).push(String.valueOf((char)Math.toIntExact((Long)a)));
+                break;
+            case 'B':
+                String ans = "";
+                while (!memory.get(addr).isEmpty() && memory.get(addr).peek() instanceof Long) {
+                    a = memory.get(addr).pop();
+                    ans += (char)Math.toIntExact((Long)a);
+                }
+                memory.get(addr).push(ans);
+                break;
+            case 'n':
+                a = memory.get(addr).pop();
+                if (a instanceof Long) {
+                    System.err.println("TypeError: tried to cast non-string to number");
+                    System.exit(1);
+                }
+                String sa = (String)a;
+                for (int i = sa.length() - 1; i >= 0; i--) {
+                    memory.get(addr).push(Long.valueOf((int)sa.charAt(i)));
+                }
+                break;
+         }
     }
 
     private void binOp(char curr) {

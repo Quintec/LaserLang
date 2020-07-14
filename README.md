@@ -74,7 +74,7 @@ The equivalent of `if` statements in Laser is *branching*. **Branches** are esse
 
 # Operations
 
-Unary operations operate on the element on top of the stack, while binary operations operate on the top two elements of the stack. Stack operations modify the whole stack in some way not related to only one element, or move between stacks.
+Unary operations operate on the element on top of the stack (or in some cases the whole current stack), while binary operations operate on the top two elements of the stack. Stack operations modify the whole stack in some way not related to only one element, or move between stacks.
 
 ## Unary Operations
 
@@ -91,6 +91,9 @@ Unary operations operate on the element on top of the stack, while binary operat
 | `P` | Stack Pop | `[[a, b, c], [a, b, c]]` | `[[a, b, c]]` | |
 | `o` | Output | `[a, b, c]` | `[b, c]` | Pops and outputs the top element of the stack. |
 | `O` | Stack Output | `[a, b, c]` | `[]` | Pops and outputs the whole stack, space separated. |
+| `b` | Cast to String | `[65, a, b, c]` | `["A", a, b, c]` | Casts to a UTF-8 character. This may end up being out of the ASCII range, as numbers are longs internally. |
+| `n` | Cast to Number | `["A", a, b, c]` | `[65, a, b, c]` | Characters outside of the ASCII range will be casted as a single UTF-8 number. |
+| `B` | Cast Stack to String | `[65, 98, 99, "d", a, b, c]` | `["Abc", "d", a, b, c]` | As above, all operations use UTF-8. The operation terminates when either the end of the stack or the next string is the stack is reached. An empty stack, or a stack without leading numbers, will have `""` inserted. |
 
 ## Binary Operations
 
