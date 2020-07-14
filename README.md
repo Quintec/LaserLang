@@ -92,7 +92,7 @@ Unary operations operate on the element on top of the stack (or in some cases th
 | `o` | Output | `[a, b, c]` | `[b, c]` | Pops and outputs the top element of the stack. |
 | `O` | Stack Output | `[a, b, c]` | `[]` | Pops and outputs the whole stack, space separated. |
 | `b` | Cast to String | `[65, a, b, c]` | `["A", a, b, c]` | Casts to a UTF-8 character. This may end up being out of the ASCII range, as numbers are longs internally. |
-| `n` | Cast to Number | `["A", a, b, c]` | `[65, a, b, c]` | Characters outside of the ASCII range will be casted as a single UTF-8 number. |
+| `n` | Cast to Number | `["Abc", a, b, c]` | `[65, 98, 99, a, b, c]` | Characters outside of the ASCII range will be casted as a single UTF-8 number.  |
 | `B` | Cast Stack to String | `[65, 98, 99, "d", a, b, c]` | `["Abc", "d", a, b, c]` | As above, all operations use UTF-8. The operation terminates when either the end of the stack or the next string is the stack is reached. An empty stack, or a stack without leading numbers, will have `""` inserted. |
 
 ## Binary Operations
