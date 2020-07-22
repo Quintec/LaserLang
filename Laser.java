@@ -474,7 +474,7 @@ public class Laser {
                 } else {
                 	la = (Long)a;
                 	lb = (Long)b;
-                	if (lb > la)
+                	if (la > lb)
                 		memory.get(addr).push(FALSE);
                 	else
                 		memory.get(addr).push(TRUE);
