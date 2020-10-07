@@ -44,6 +44,10 @@ public class Laser {
     }
     
     public static void run(String[] args) throws IOException {
+        if (args.length < 1) {
+            System.err.println("Usage: Laser <program.lsr> <-v, --verbose> ");
+            System.exit(1);
+        }
         if (args[0].indexOf(".lsr") == -1) {
             System.err.println("FileError: Laser program files must end in .lsr");
             System.exit(1);
